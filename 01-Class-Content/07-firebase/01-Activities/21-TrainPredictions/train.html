@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Employee
+    </title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- <div id="row1">Train Scheduler</div> -->
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                Employee Name
+                            </div>
+                            <div class="col-sm">
+                                Role
+                            </div>
+                            <div class="col-sm">
+                               Start Date
+                            </div>
+                            <div class="col-sm">
+                                Months Worked
+                            </div>
+                            <div class="col-sm">
+                                Monthly Rate
+                            </div>
+                            <div class="col-sm">
+                               Total Billed ($)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <p id="employee-name-display"></p>
+                            </div>
+                            <div class="col-sm">
+                                <p id="role-display"></p>
+                            </div>
+                            <div class="col-sm">
+                                <p id="startdate-display"></p>
+                            </div>
+                            <div class="col-sm">
+                                <p id="monthsworked-display"></p>
+                            </div>
+                            <div class="col-sm">
+                                <p id="monhtlyrate-display"></p>
+                            </div>
+                            <div class="col-sm">
+                                <p id="totalBilled-display"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                   Add Employee
+                </div>
+                <div class="card-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="train-name-input">Employee Name</label>
+                            <input class="form-control" id="name-input" type="text" placeholder="Employee Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="role-input">Role</label>
+                            <input class="form-control" id="role-input" type="text" placeholder="swerve">
+                        </div>
+                        <div class="form-group">
+                            <label for="startdate-input">Start Date (MM/DD/YYYY)</label>
+                            <input class="form-control" id="startdate-input" type="text"
+                                placeholder="Time (HH:mm military time)">
+                        </div>
+                        <div class="form-group">
+                            <label for="monthlyrate-input">Monthly Rate</label>
+                            <input class="form-control" id="monthlyrate-input" type="number" placeholder="Monthly Rate">
+                        </div>
+                        <button class="btn btn-default" id="add-employee" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LINK TO FIREBASE GOES HERE -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js">// Initialize Firebase</script>
+    <script src="assets/javascript/javascript.js">
+    
+    var config = {
+    apiKey: "AIzaSyDEdyH81buu_XRZyLRSkLZB-JiAY2JbxxA",
+    authDomain: "fir-1-ce36f.firebaseapp.com",
+    databaseURL: "https://fir-1-ce36f.firebaseio.com",
+    projectId: "fir-1-ce36f",
+    storageBucket: "fir-1-ce36f.appspot.com",
+    messagingSenderId: "696941206313"
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+  console.log(database)
+    $("#add-employee").on("click", function(event){
+        
+        event.preventDefault();
+
+        var employeeName = $("<p>");
+        employeeName.text($("#name-input").val());
+        console.log(employeeName);
+
+        var employeeRole = $("<p>");
+        employeeRole.text($("#role-input").val());
+        console.log(employeeRole); 
+
+        var startDate = $("<p>")
+        startDate.text($("#startdate-input").val());
+        console.log(startDate); 
+
+        var monthlyRateInput = $("<p>");
+        monthlyRateInput.text($("#monthlyrate-input").val());
+        console.log(monthlyRateInput)
+
+        $("#employee-name-display").prepend(employeeName);
+        $("#role-display").prepend(employeeRole);
+        $("#startdate-display").prepend(startDate);
+        $("#monthlyrate-display").prepend(monthlyRateInput)
+    })
+
+    
+    </script>
+
+    
+</body>
+</html>
